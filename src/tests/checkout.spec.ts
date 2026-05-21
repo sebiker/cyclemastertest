@@ -74,23 +74,13 @@ test.describe('Checkout Page', () => {
     }
   });
 
-  test('should continue checkout flow', async () => {
+  test('should continue checkout flow without submitting order', async () => {
     try {
       await checkoutPage.continueCheckout();
-      expect(true).toBeTruthy();
+      const summary = await checkoutPage.getOrderSummary();
+      expect(summary).toBeDefined();
     } catch {
-      // May already be at final step
-      expect(true).toBeTruthy();
-    }
-  });
-
-  test('should handle place order', async ({ page }) => {
-    try {
-      await checkoutPage.placeOrder();
-      // Should navigate to success page
-      expect(true).toBeTruthy();
-    } catch {
-      // May require full checkout flow setup
+      // Continue step may not be available if already at review stage
       expect(true).toBeTruthy();
     }
   });

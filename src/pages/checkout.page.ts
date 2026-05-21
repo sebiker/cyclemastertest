@@ -13,7 +13,6 @@ export class CheckoutPage {
   private readonly shippingMethod: Locator;
   private readonly paymentMethod: Locator;
   private readonly agreeTermsCheckbox: Locator;
-  private readonly placeOrderButton: Locator;
   private readonly continueButton: Locator;
   private readonly orderSummary: Locator;
 
@@ -30,7 +29,6 @@ export class CheckoutPage {
     this.shippingMethod = page.locator('input[name*="shipping_method"], [class*="shipping-method"]').first();
     this.paymentMethod = page.locator('input[name*="payment_method"], [class*="payment-method"]').first();
     this.agreeTermsCheckbox = page.locator('input[type="checkbox"][name*="agree"], label:has-text("agree")').first();
-    this.placeOrderButton = page.locator('button:has-text("Place Order"), button:has-text("Comanda"), input[value="Comanda"]').first();
     this.continueButton = page.locator('button:has-text("Continue")').first();
     this.orderSummary = page.locator('[class*="order-summary"], [class*="summary"]').first();
   }
@@ -77,11 +75,6 @@ export class CheckoutPage {
     if (await this.agreeTermsCheckbox.isVisible()) {
       await this.agreeTermsCheckbox.click();
     }
-  }
-
-  async placeOrder() {
-    await this.placeOrderButton.click();
-    await this.page.waitForURL('**/success**');
   }
 
   async continueCheckout() {

@@ -64,12 +64,12 @@ test.describe('Shopping Cart', () => {
     expect(itemCount).toBeGreaterThanOrEqual(0);
   });
 
-  test('should update product quantity in cart', async () => {
+  test('should update product quantity in cart', async ({ page }) => {
     await catalogPage.goToComponente();
     await catalogPage.clickFirstProduct();
     
     const productDetailPage = require('../pages/product-detail.page').ProductDetailPage;
-    const detail = new productDetailPage;
+    const detail = new productDetailPage(page);
     
     await detail.addToCart();
     await cartPage.goto();

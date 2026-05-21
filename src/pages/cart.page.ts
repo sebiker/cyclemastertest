@@ -23,7 +23,7 @@ export class CartPage {
     this.updateButton = page.locator('button:has-text("Update")').first();
     this.emptyCartMessage = page.locator('text=/Your cart is empty|cos gol|cos poate sa fie gol/i');
     this.subtotal = page.locator('text=/Subtotal|Subtotal/i');
-    this.shipping = page.locator('text=/Shipping|Livrare/i');
+    this.shipping = page.locator('main').locator('text=/Shipping|Livrare/i').last();
     this.couponInput = page.locator('input[placeholder*="coupon"], input[placeholder*="Coupon"]');
   }
 
